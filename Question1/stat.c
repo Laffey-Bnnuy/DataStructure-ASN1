@@ -14,13 +14,13 @@ static char* randomizeUsername() {
 	for (int i = 0; i < MAX_NAME; i++) {
 		buffer[i] = randomChar();
 	}
+	buffer[MAX_NAME-1] = '\0';
 	return buffer;
 }
 int randomlyGeneratedUser(USERSTAT* data) {
 	char faction[3][MAX_NAME] = { "red","blue","green" };
 	strncpy(data->faction, faction[(rand() % 3)], MAX_NAME);
 	strncpy(data->username, randomizeUsername(), MAX_NAME);
-	data->username[MAX_NAME] = '\0';
-	data->level = rand() % 60 + 1 ;
-
-}	
+	data->username[MAX_NAME - 1] = '\0';
+	data->level = rand() % 60 + 1;
+}

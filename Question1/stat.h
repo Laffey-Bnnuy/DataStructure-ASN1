@@ -1,5 +1,5 @@
 #pragma once
-#define MAX_NAME 10
+#define MAX_NAME 11
 
 typedef struct userMenu {
 	char username[MAX_NAME];
