@@ -9,7 +9,7 @@ char randomChar() {
 	buffer[2] = rand() % 10 + 48;
 	return buffer[rand()%3];
 }
-char* randomizeUsername() {
+static char* randomizeUsername() {
 	char* result = malloc(MAX_NAME);
 	char buffer[MAX_NAME];
 	for (int i = 0; i < MAX_NAME; i++) {
@@ -21,9 +21,10 @@ char* randomizeUsername() {
 }
 int randomlyGeneratedUser(USERSTAT* data) {
 	char faction[3][MAX_NAME] = { "red","blue","green" };
-
 	strncpy(data->faction, faction[(rand() % 3)], MAX_NAME);
+	char* username = randomizeUsername();
 	strncpy(data->username, randomizeUsername(), MAX_NAME);
+	data->username[10] = '\0';
 	data->level = rand() % 61;
 
-}
+}	

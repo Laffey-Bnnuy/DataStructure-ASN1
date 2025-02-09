@@ -24,8 +24,10 @@ void initiateQueue(QUEUE *q) {
 int isQueueEmpty(QUEUE *q) {
 	return (q->pHead == NULL);
 }
+
 int addToQueue(QUEUE * q,USERSTAT data) {
-	PNODE newNode = (PNODE)malloc(sizeof(NODE));
+	PNODE newNode = (PNODE) malloc(sizeof( NODE ));
+
 	if (!newNode) {
 		fprintf(stderr, "Error allocating memory");
 		return MEM_ALLOT_FAIL;
@@ -40,14 +42,17 @@ int addToQueue(QUEUE * q,USERSTAT data) {
 	else {
 		q->pTail->pNext = newNode;
 	}
+	
 	q->pTail = newNode;
 	return 0;
 }
-PNODE deQueue(QUEUE *q){
+PNODE deQueue(QUEUE *q,USERSTAT* user){
 	PNODE temp;
 	if (isQueueEmpty(q))
 		return(NULL); 
 	temp = q->pHead; 
+	
+	*user = q->pHead->data;
 	q->pHead = q->pHead->pNext; 
 	return(temp); 
 }

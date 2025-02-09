@@ -7,4 +7,3 @@ typedef struct userMenu {
 	char faction[MAX_NAME];
 }USERSTAT;
 int randomlyGeneratedUser(USERSTAT* data);
-char* randomizeUsername();
