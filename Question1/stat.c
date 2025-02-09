@@ -19,9 +19,8 @@ static char* randomizeUsername() {
 int randomlyGeneratedUser(USERSTAT* data) {
 	char faction[3][MAX_NAME] = { "red","blue","green" };
 	strncpy(data->faction, faction[(rand() % 3)], MAX_NAME);
-	char* username = randomizeUsername();
 	strncpy(data->username, randomizeUsername(), MAX_NAME);
-	data->username[10] = '\0';
+	data->username[MAX_NAME] = '\0';
 	data->level = rand() % 60 + 1 ;
 
 }	
