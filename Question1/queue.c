@@ -3,43 +3,51 @@
 #include "stat.h"
 #include <string.h>
 #include <stdlib.h>
+#define MEM_ALLOT_FAIL -1
+#define ENQUEUE_FAIL -2
+int enqueueRandomUsers(QUEUE *q,int n) {
+	USERSTAT data;
+	for (int i = 0; i < n; i++) {
+		randomlyGeneratedUser(&data);
+		if (addToQueue(q,data) != 0) {
+			return ENQUEUE_FAIL;
+		}
+	}
+	return 0;
+}
+void initiateQueue(QUEUE *q) {
+	q->pHead = NULL;
+	q->pTail = NULL;
+}
 
-PNODE createNode() {
-	char faction[3][MAX_NAME] = {"red","blue","green"};
 	
+int isQueueEmpty(QUEUE *q) {
+	return (q->pHead == NULL);
+}
+int addToQueue(QUEUE * q,USERSTAT data) {
 	PNODE newNode = (PNODE)malloc(sizeof(NODE));
 	if (!newNode) {
-		fprintf(stderr, "error allocating memory\n");
-		exit(EXIT_FAILURE);
+		fprintf(stderr, "Error allocating memory");
+		return MEM_ALLOT_FAIL;
 	}
-	strncpy(newNode->data.faction, faction[(rand() % 3)],MAX_NAME);
-	strncpy(newNode->data.username,randomizeUsername(), MAX_NAME);
-	newNode->data.level = rand() % 61;
-	
-	return newNode;
-}
-void initiateQueue(void) {
-	pHead = pTail = NULL;
-}
 
-	
-int isQueueEmpty(void) {
-	return (pHead == NULL);
-}
-void addToQueue(PNODE node) {
-	if (pHead == NULL) {
-		pHead = pTail = node;
+	newNode->data = data;
+	newNode->pNext = NULL;
+
+	if (isQueueEmpty(q)) {
+		q->pHead = q->pTail = newNode;
 	}
 	else {
-		pTail->pNext = node;
+		q->pTail->pNext = newNode;
 	}
-	node->pNext = NULL;
-	pTail = node;
+	q->pTail = newNode;
+	return 0;
 }
-PNODE deQueue(void){
+PNODE deQueue(QUEUE *q){
 	PNODE temp;
-	if (pHead == NULL) return(NULL); 
-	temp = pHead; 
-	pHead = pHead->pNext; 
+	if (isQueueEmpty(q))
+		return(NULL); 
+	temp = q->pHead; 
+	q->pHead = q->pHead->pNext; 
 	return(temp); 
 }

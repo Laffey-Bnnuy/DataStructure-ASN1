@@ -5,12 +5,14 @@ typedef struct node {
 	struct node* pNext; 
 	USERSTAT data;
 }NODE,*PNODE;
+typedef struct {
+	struct node* pHead;         
+	struct node* pTail;         
+} QUEUE;
 
-PNODE pHead;
-PNODE pTail;
 
-PNODE createNode();
-void initiateQueue(void);
+
+void initiateQueue(QUEUE);
 int isQueueEmpty(void); 
-void AddToQueue(PNODE); 
+int addToQueue(USERSTAT data);
 PNODE deQueue(void); 

@@ -3,7 +3,11 @@
 #include <stdio.h>
 
 int main(int argc,char *argv[]) {
-    printf("%s",randomizeUsername());
-    createNode();
+    
+
+    initiateQueue();
+
+
+
     return 0;
 }
