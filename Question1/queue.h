@@ -14,4 +14,3 @@ void initiateQueue(void);
 int isQueueEmpty(void); 
 void AddToQueue(PNODE); 
 PNODE deQueue(void); 
-int randomlyGeneratedUser(PUSERSTAT);

@@ -21,14 +21,7 @@ PNODE createNode() {
 void initiateQueue(void) {
 	pHead = pTail = NULL;
 }
-int randomlyGeneratedUser(USERSTAT *data) {
-	char faction[3][MAX_NAME] = { "red","blue","green" };
 
-	strncpy(data->faction, faction[(rand() % 3)], MAX_NAME);
-	strncpy(data->username, randomizeUsername(), MAX_NAME);
-	data->level = rand() % 61;
-
-}
 	
 int isQueueEmpty(void) {
 	return (pHead == NULL);
